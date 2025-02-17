@@ -1,13 +1,18 @@
-FROM node:12.18.2 as build
+FROM node:18-alpine
 
-ARG REACT_APP_SERVICES_HOST=/services/m
-
+# Create working directory
 WORKDIR /app
 
-COPY ./package.json /app/package.json
-COPY ./package-lock.json /app/package-lock.json
+# Copy package.json to install dependencies
 
-RUN yarn install
-COPY . .
-RUN yarn build
+# Install dependencies
+RUN npm install 
+
+# Copy the rest of the application code
+
+# Expose the port your application listens on (e.g., 3000)
+EXPOSE 3000
+
+# Run the application 
+CMD ["npm", "start"] 
 
